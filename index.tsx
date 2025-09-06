@@ -9,7 +9,7 @@ import {GoogleGenAI, Modality} from '@google/genai';
 // FIX: Add a declaration for the 'google' object from the Google Maps API script.
 declare const google: any;
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyBilr8sMYDmsOU8bqxZ51SdJARYZuHVcXY";
+const GOOGLE_MAPS_API_KEY = "REPLACE ME PLEASE";
 
 const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
 
@@ -30,12 +30,14 @@ const themeData: Record<string, {
     mapStyle: any[];
     title: string;
     buttonText: string;
+    placeholder: string;
 }> = {
     pirate: {
         prompt: "transform this into a weathered, old-timey pirate treasure map. Add a compass rose, rhumb lines, and a sea monster if there is water.",
         captions: { yourMap: "Captain's Chart", treasureMap: "X Marks the Spot" },
         title: "Scallywag's Map Maker",
         buttonText: "Unfurl the Map",
+        placeholder: "e.g., 'Tortuga' or 'The Spanish Main'",
         mapStyle: [
             { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
             { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
@@ -68,6 +70,7 @@ const themeData: Record<string, {
         captions: { yourMap: "Arcane Atlas", treasureMap: "Enchanted Realm" },
         title: "Alchemist's Atlas",
         buttonText: "Cast the Spell",
+        placeholder: "e.g., 'The Forbidden Forest' or 'Mount Doom'",
         mapStyle: [
             { elementType: "geometry", stylers: [{ color: "#1d2c4d" }] },
             { elementType: "labels.text.fill", stylers: [{ color: "#8ec3b9" }] },
@@ -101,6 +104,7 @@ const themeData: Record<string, {
         captions: { yourMap: "City Grid-Scan", treasureMap: "Neon Simulacrum" },
         title: "Netrunner's Grid",
         buttonText: "Hack the Planet",
+        placeholder: "e.g., 'Neo-Tokyo' or 'Night City'",
         mapStyle: [
             { stylers: [{ hue: "#00ffea" }, { saturation: -50 }, { lightness: -60 }, { gamma: 1.5 }] },
             { featureType: "road", elementType: "geometry", stylers: [{ "color": "#FF00FF" }, { "lightness": -20 }] },
@@ -118,6 +122,7 @@ const themeData: Record<string, {
         captions: { yourMap: "Stellar Cartography", treasureMap: "New Worlds" },
         title: "Stardrive Cartography",
         buttonText: "Engage Thrusters",
+        placeholder: "e.g., 'Cape Canaveral' or 'Area 51'",
         mapStyle: [
             { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
             { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -144,6 +149,7 @@ const themeData: Record<string, {
         captions: { yourMap: "Royal Decree Map", treasureMap: "The Kingdom" },
         title: "Her Majesty's Cartography",
         buttonText: "Issue Royal Decree",
+        placeholder: "e.g., 'Cinderella Castle' or 'The Black Forest'",
         mapStyle: [
             { elementType: "geometry", stylers: [{ color: "#fde6f0" }] },
             { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
@@ -352,12 +358,13 @@ function applyTheme(theme: string) {
     // 1. Update body class for CSS styling
     document.body.className = `theme-${theme}`;
 
-    // 2. Update text content for titles and button
-    if (mainTitle && yourMapCaption && treasureMapCaption && generateBtn) {
+    // 2. Update text content for titles, button, and placeholder
+    if (mainTitle && yourMapCaption && treasureMapCaption && generateBtn && locationSearchInput) {
         mainTitle.textContent = themeData[theme].title;
         yourMapCaption.textContent = themeData[theme].captions.yourMap;
         treasureMapCaption.textContent = themeData[theme].captions.treasureMap;
         generateBtn.textContent = themeData[theme].buttonText;
+        locationSearchInput.placeholder = themeData[theme].placeholder;
     }
 
     // 3. Update Google Map style
