@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Treasure Map Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Dancing+Script:wght@700&family=Orbitron:wght@900&family=Pirata+One&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@1.0.0"
+        }
+      }
+    </script>
+</head>
+<body class="theme-pirate">
+    <div id="app-container">
+        <h1 id="main-title">AI Treasure Map Generator</h1>
+        <div id="controls">
+            <div class="control-group">
+                <label for="location-search-input">1. Find a Location on the Map</label>
+                <p class="instructions">Search for a place or pan and zoom the map below to find the perfect spot.</p>
+                <input type="text" id="location-search-input" placeholder="e.g., 'Eiffel Tower' or 'Golden Gate Park'">
+            </div>
+            <div class="control-group">
+                <label>2. Choose a Map Theme</label>
+                <div id="theme-selector">
+                    <button class="theme-btn active" data-theme="pirate" aria-label="Pirate theme" title="Pirate">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="wizard" aria-label="Wizard theme" title="Wizard">
+                        <i class="fas fa-hat-wizard"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="cyberpunk" aria-label="Cyberpunk theme" title="Cyberpunk">
+                        <i class="fas fa-robot"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="astronaut" aria-label="Astronaut theme" title="Astronaut">
+                        <i class="fas fa-rocket"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="princess" aria-label="Princess theme" title="Princess">
+                        <i class="fas fa-crown"></i>
+                    </button>
+                </div>
+            </div>
+            <button id="generate-btn" aria-label="Generate themed map">Generate</button>
+        </div>
+        <div id="image-comparison">
+            <div class="image-container">
+                <h2 id="your-map-caption">Your Map</h2>
+                <div id="map-container" role="application" aria-label="Interactive Google Map">
+                    <p>Loading map...</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <h2 id="treasure-map-caption">Treasure Map</h2>
+                <div id="edited-image-container" role="img" aria-label="Generated treasure map">
+                    <p>Your treasure map will appear here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="index.tsx"></script>
+</body>
+</html>

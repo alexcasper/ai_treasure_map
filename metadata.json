@@ -1,0 +1,5 @@
+{
+  "name": "AI Treasure Map Generator",
+  "description": "Use an interactive map to select a location and generate a stylized treasure map.",
+  "requestFramePermissions": []
+}
